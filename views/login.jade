@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  <h3>Login</h3>
+  <form action="/login" method="post" data-ajax="false">
+  <div data-role="fieldcontain" >
+  <input type="email" name="email" id="email" value="" placeholder="E-mail or phone" />
+  </div>
+
+  <div data-role="fieldcontain">
+  <input type="password" name="password" id="password" value="" placeholder="Password" />
+  </div>
+
+  <!-- <label><input type="checkbox" name="checkbox-remember" />Remember me?</label> -->
+  <!-- <input type="reset" value="Clear" data-icon="delete" /> -->
+  <input type="submit" value="Log In" data-icon="check" data-theme="b" />
+  </form>
+
+
+  <div data-role="fieldcontain">
+  <h3>New to FoodSentry?</h3>
+  <a href="/register" data-role="button" data-icon="forward" data-theme="e">Register</a>
+  </div>
