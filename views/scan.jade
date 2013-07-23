@@ -1,25 +1,5 @@
 extends layout
-
-block append head
   
-  script
-    $(document).ready(function(){
-      $('#btn-choose').click(function(){
-          console.log('clicked');
-          $('#scan').click();
-          });
-
-      $('#btn-remove').click(function(){
-          $('#scanForm').each(function(){
-              this.reset();
-            });
-          $('#filetext').val('');
-        });
-
-      $('#scan').change(function(){
-          $('#filetext').val($(this).val().replace(/C:\\fakepath\\/i, ''));
-          });
-    });
 
 block content
   h3 Picture Upload

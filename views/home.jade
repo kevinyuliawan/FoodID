@@ -1,17 +1,5 @@
 extends layout
 
-block append head
-  // - custom script for toggling the radiobox, since there's an <a> and an <li> to trigger the checkbox
-  script
-    function toggle(id){
-      var cur = $(id);
-      if (cur.prop('checked')){
-        cur.prop('checked',false).checkboxradio('refresh')}
-      else cur.prop('checked',true).checkboxradio('refresh');
-    };
-
-
-
 block content
   h3 Welcome!
 
@@ -31,8 +19,8 @@ block content
     ul(data-role="listview", data-inset="true", data-split-icon="gear", data-theme="c")
       - each profile, i in profilelist
         li
-          a(href="#", onclick="toggle('#checkbox-#{i}')", data-mini="true")
+          a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
             input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
-            label(for="checkbox-#{i}", onclick="toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
+            label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
           a(href="#", data-mini="true")
 
