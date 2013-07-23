@@ -26,6 +26,7 @@ exports.home = function(req, res){
   res.render('home', {
     title: 'Home', 
     pageid: 'homepage',
+    pageurl: '/home',
     profilelist: theProfiles
    });
 }
