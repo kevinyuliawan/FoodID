@@ -1,0 +1,35 @@
+extends layout
+
+block append head
+  
+  script
+    $(document).ready(function(){
+      $('#btn-choose').click(function(){
+          console.log('clicked');
+          $('#scan').click();
+          });
+
+      $('#btn-remove').click(function(){
+          $('#scanForm').each(function(){
+              this.reset();
+            });
+          $('#filetext').val('');
+        });
+
+      $('#scan').change(function(){
+          $('#filetext').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+          });
+    });
+
+block content
+  h3 Picture Upload
+
+  div(data-role="fieldcontain")
+    input(type="text", id="filetext", placeholder="File name").ui-disabled
+    button#btn-choose Choose
+    button#btn-remove Remove
+
+  div(data-role="fieldcontain")
+    form#uploadForm(action="/upload", method="post", data-ajax="false", enctype='multipart/form-data', id="scanForm")
+      input(type="file", name="scan", id="scan", style="display:none;")
+      input(type="submit", value="Upload", data-theme="b")

@@ -31,5 +31,9 @@ exports.home = function(req, res){
 }
 
 exports.scan = function(req, res){
+  res.render('scan', {
+    title: 'Scan',
+    pageid: 'scanpage'
+  })
   
 }

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h3 Results
+  ul(data-role="listview", data-split-icon="info", data-inset="true")
+    - each ingr in ingrlist
+      li
+        a(href="#")
+          h5= ingr
+        a(href="#")

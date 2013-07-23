@@ -11,6 +11,7 @@ block append head
     };
 
 
+
 block content
   h3 Welcome!
 
@@ -19,19 +20,19 @@ block content
   // - three column grid for buttons
   div.ui-grid-b
     div.ui-block-a
-      button(data-icon="plus", data-iconpos="top") Add
+      button(data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
-      button(data-icon="gear", data-iconpos="top") Edit
+      button(data-icon="gear", data-iconpos="top", data-mini="true") Edit
     div.ui-block-c
-      button(data-icon="info", data-iconpos="top") Help
+      button(data-icon="info", data-iconpos="top", data-mini="true") Help
   
   // - need to put the input checkbox inside the li element in order to get the split-li-gear on the right. Ugly, but it'll have to do for now
   .profilelist
     ul(data-role="listview", data-inset="true", data-split-icon="gear", data-theme="c")
       - each profile, i in profilelist
         li
-          a(href="#", onclick="toggle('#checkbox-#{i}')")
-            input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}")
-            label(for="checkbox-#{i}", onclick="toggle('#checkbox-#{i}')") #{profile.name}
-          a(href="#")
+          a(href="#", onclick="toggle('#checkbox-#{i}')", data-mini="true")
+            input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
+            label(for="checkbox-#{i}", onclick="toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
+          a(href="#", data-mini="true")
 
