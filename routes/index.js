@@ -30,10 +30,6 @@ exports.home = function(req, res){
    });
 }
 
-exports.scan = function(req, res){
-  res.render('scan', {
-    title: 'Scan',
-    pageid: 'scanpage'
-  })
-  
+exports.error = function(req, res){
+  res.render('error', {title: 'Error', pageid: 'errorpage'});
 }

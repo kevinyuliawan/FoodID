@@ -6,7 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
-  , upload = require('./routes/upload')
+  , scan = require('./routes/scan')
   , results = require('./routes/results')
   , http = require('http')
   , path = require('path');
@@ -38,9 +38,11 @@ app.get('/users', user.list);
 app.get('/login', routes.login);
 app.post('/login', routes.doLogin);
 app.get('/home', routes.home);
-app.get('/scan', routes.scan);
-app.post('/upload', upload.post);
+app.get('/scan', scan.get);
+app.post('/scan', scan.post);
 app.get('/results', results.get);
+
+app.get('/error', routes.error);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

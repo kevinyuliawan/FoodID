@@ -10,6 +10,6 @@ block content
     button#btn-remove Remove
 
   div(data-role="fieldcontain")
-    form#uploadForm(action="/upload", method="post", data-ajax="false", enctype='multipart/form-data', id="scanForm")
+    form#uploadForm(action="/scan", method="post", data-ajax="false", enctype='multipart/form-data', id="scanForm")
       input(type="file", name="scan", id="scan", style="display:none;")
       input(type="submit", value="Upload", data-theme="b")
