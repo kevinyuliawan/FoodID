@@ -34,3 +34,11 @@ exports.home = function(req, res){
 exports.error = function(req, res){
   res.render('error', {title: 'Error', pageid: 'errorpage'});
 }
+
+exports.success = function(req, res){
+  res.render('success', {
+    title: 'Success',
+    pageid: 'successpage',
+    redirect: 'home'
+  });
+}

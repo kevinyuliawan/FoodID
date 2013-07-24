@@ -3,11 +3,25 @@
  * Module dependencies.
  */
 
+/**
+Test User info:
+First Name: John
+Last Name:  Smith
+email:      johnsmith@cigna.com
+phone:      1112223333
+            2038095311 (for ref)
+password:   cigna1
+**/
+
 var express = require('express')
+  // require mongoose db script
+  , db = require('./models/db')
   , routes = require('./routes')
+  , login = require('./routes/login')
   , user = require('./routes/user')
   , scan = require('./routes/scan')
   , results = require('./routes/results')
+  , register = require('./routes/register')
   , http = require('http')
   , path = require('path');
 
@@ -35,12 +49,19 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/login', routes.login);
-app.post('/doLogin', routes.doLogin);
+app.get('/login', login.get);
+app.post('/login', login.post);
 app.get('/home', routes.home);
 app.get('/scan', scan.get);
 app.post('/scan', scan.post);
 app.get('/results', results.get);
+
+app.get('/register', register.get);
+app.post('/register', register.post);
+
+app.get('/success', routes.success);
+
+
 
 app.get('/error', routes.error);
 

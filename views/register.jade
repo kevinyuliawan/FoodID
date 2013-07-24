@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h3 Register
+  form(action="/register", method="post", data-ajax="true")
+    div(data-role="fieldcontain")
+      label(for="firstname", class="ui-hidden-accessible") First Name:
+      input(type="text", name="firstname", id="firstname", placeholder="First Name", data-mini="false", data-clear-btn="true")
+
+    div(data-role="fieldcontain")
+      label(for="lastname", class="ui-hidden-accessible") Last Name:
+      input(type="text", name="lastname", id="lastname", placeholder="Last Name", data-mini="false", data-clear-btn="true")
+
+    div(data-role="fieldcontain")
+      label(for="email", class="ui-hidden-accessible") E-mail:
+      input(type="email", name="email", id="email", placeholder="E-mail", data-mini="false", data-clear-btn="true")
+
+    div(data-role="fieldcontain")
+      label(for="phone", class="ui-hidden-accessible") Phone Number:
+      input(type="tel", name="phone", id="phone", placeholder="Phone Number", data-mini="false", data-clear-btn="true")
+
+    div(data-role="fieldcontain")
+      label(for="password", class="ui-hidden-accessible") Password:
+      input(type="password", name="password", id="password", placeholder="Password", data-mini="false", data-clear-btn="true")
+
+    input(type="submit", name="submit", value="Register!", data-icon="check", data-theme="b")
+
+
+
+
+
+
+
