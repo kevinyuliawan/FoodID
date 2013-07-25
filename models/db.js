@@ -7,15 +7,16 @@ var userSchema = new mongoose.Schema({
   email: String,
   phone: Number,
   password: String,
-  Profiles: [
+  profiles: [
     {
       name: String,
       me: Boolean,
       def: Boolean,
       position: Number,
-
-      allergies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Allergies'}],
-      medications: [{type: mongoose.Schema.Types.ObjectId, ref: 'Medications'}]
+      allergies: [{name: String}],
+      medications: [{name: String}]
+      // allergies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Allergies'}],
+      // medications: [{type: mongoose.Schema.Types.ObjectId, ref: 'Medications'}]
     }
   ]
 });

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h3= title
+
+  if updatesuccess
+    p
+      h3
+        span(style="color:#5990BF") Update successful!
+
+  form(action="/profile/#{profile._id}", method="post", data-ajax="true")
+    div(data-role="fieldcontain")
+      label(for="name") Name:
+      input(type="text", name="name", id="name", value="#{profile.name}", data-mini="false", data-clear-btn="true")
+
+    div(data-role="fieldcontain")
+      label(for="allergies") Allergies:
+      textarea(cols="40", rows="10", name="allergies", id="allergies", data-mini="false") #{allergies}
+
+    div(data-role="fieldcontain")
+      label(for="medications") Medications:
+      textarea(cols="40", rows="10", name="medications", id="medications", data-mini="false") #{medications}
+
+    div.ui-grid-a
+      div.ui-block-a
+        a(href="/home", data-role="button", data-icon="back") Back
+      div.ui-block-b
+        input(type="submit", name="submit", value="Update", data-icon="check", data-theme="b")

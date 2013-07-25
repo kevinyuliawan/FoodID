@@ -14,7 +14,8 @@ exports.post = function(req, res){
     req.body.email,
     req.body.phone,
     req.body.password,
-    // send res for future redirection
+    // send res and req for future redirection and session initiation
+    req,
     res
   )
 

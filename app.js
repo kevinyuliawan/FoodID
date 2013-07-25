@@ -22,6 +22,7 @@ var express = require('express')
   , scan = require('./routes/scan')
   , results = require('./routes/results')
   , register = require('./routes/register')
+  , profile = require('./routes/profile')
   , http = require('http')
   , path = require('path');
 
@@ -38,6 +39,9 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 // customize the formidable bodyparser with some options
 app.use(express.bodyParser({uploadDir: __dirname + '/uploads/tmp', keepExtensions: true}));
+// for authentication; specify before routes and cookieparser before session
+app.use(express.cookieParser());
+app.use(express.session({secret: 'group7', cookie: {maxAge: 600000}}));
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,6 +64,13 @@ app.get('/register', register.get);
 app.post('/register', register.post);
 
 app.get('/success', routes.success);
+
+app.get('/profile/create', profile.createget);
+app.post('/profile/create', profile.createpost);
+
+app.get('/profile/:profid', profile.profileget);
+app.get('/profile/:profid?success', profile.profileget);
+app.post('/profile/:profid', profile.profilepost);
 
 
 

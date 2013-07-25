@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  h3 Welcome!
+  h3 Welcome #{username}!
 
   a(href="/scan", data-role="button", data-theme="e") Scan
 
   // - three column grid for buttons
   div.ui-grid-b
     div.ui-block-a
-      button(data-icon="plus", data-iconpos="top", data-mini="true") Add
+      a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
       button(data-icon="gear", data-iconpos="top", data-mini="true") Edit
     div.ui-block-c
@@ -22,5 +22,5 @@ block content
           a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
             input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
             label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
-          a(href="#", data-mini="true")
+          a(href="/profile/#{profile._id}", data-mini="true")
 

@@ -11,16 +11,7 @@ exports.getinfo = function(name, callback){
   });
 };
 
-exports.adduser = function(name){
-  var newUser = new User({name: name});
-  newUser.save(function(err, user){
-    if(err);
-    console.log('saved user: ');
-    console.log(user);
-  })
-};
-
-exports.adduser = function(firstname, lastname, email, phone, password, res){
+exports.adduser = function(firstname, lastname, email, phone, password, req, res){
   var name = firstname + " " + lastname;
   var newUser = new User({
     firstname: firstname,
@@ -31,7 +22,14 @@ exports.adduser = function(firstname, lastname, email, phone, password, res){
     password: password
   });
 
-  function redirect(){
+  function redirect(user){
+    // set session defaults
+    req.session.username = user.firstname;
+    req.session.email = user.email;
+    req.session.phone = user.phone;
+    req.session.profiles = user.profiles;
+    req.session.uid = user._id;
+    // redirect to success
     res.redirect('/success');
   };
 
@@ -39,9 +37,54 @@ exports.adduser = function(firstname, lastname, email, phone, password, res){
     if(err); //TODO Handle error
     console.log('saved new user: ');
     console.log(user);
-    redirect();
+    redirect(user);
   });
 
 };
+
+  exports.findUserById = function(userid, callback){
+    User.model.findOne({_id: userid}, function(err, user){
+      callback(err, user);
+    });
+  };
+
+  exports.addProfile = function(userid, profName, profMe, profDef, profPos, profAllergies, profMedications, callback){
+    User.findByIdAndUpdate(
+      userid, 
+      { $push: {profiles:
+        {
+          name: profName,
+          me: profMe,
+          def: profDef,
+          pos: profPos,
+          allergies: profAllergies,
+          medications: profMedications
+        }
+      }},
+      function(err, user){
+        callback(err, user);
+      }
+      );
+  };
+
+  exports.getProfile = function(userid, profid, callback){
+    User.findById(userid, function(err, user){
+      var foundProfile = user.profiles.id(profid);
+      console.log('Found profile: ' + foundProfile);
+      callback(foundProfile);
+    })
+  };
+
+  exports.updateProfile = function(userid, profid, config, callback){
+    User.findById(userid, function(err, user){
+      var foundProfile = user.profiles.id(profid);
+      foundProfile.name = config.name;
+      foundProfile.allergies = config.allergies;
+      foundProfile.medications = config.medications;
+      user.save(function(err){
+        callback(user, foundProfile);
+      })
+    });
+  }
 
 exports.model = User;

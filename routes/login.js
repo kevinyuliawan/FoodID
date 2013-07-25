@@ -16,7 +16,15 @@ exports.post = function(req, res){
   // callback for when user is found, need to verify their password
   function found(user){
     if (user.password == submittedPass)
-      {res.redirect('/home')}
+      {
+        // initialize session's variables from the user object
+        req.session.username = user.firstname;
+        req.session.email = user.email;
+        req.session.phone = user.phone;
+        req.session.profiles = user.profiles;
+        req.session.uid = user._id;
+        res.redirect('/home')
+      }
     else
       renderIncorrectLogin();
   }
@@ -32,7 +40,7 @@ exports.post = function(req, res){
   User.model.findOne(query, function(err, user){
     if (err){res.redirect('/error'); console.log('The error: ' + err)}
     else if (user != null){console.log('Successful find: ' + user); found(user)}
-    else {console.log('No user found'); renderIncorrectLogin()};
+    else {console.log('No user found; request was: ' + submitted + ' and type was: ' + submittedType); renderIncorrectLogin()};
   });
 
 };
