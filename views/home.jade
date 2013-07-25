@@ -8,19 +8,40 @@ block content
   // - three column grid for buttons
   div.ui-grid-b
     div.ui-block-a
-      a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
+      if(editmode == true)
+          a(href="/home/delete", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true") Delete
+      else
+          a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
-      button(data-icon="gear", data-iconpos="top", data-mini="true") Edit
+      if(editmode == true)
+          a(href="/home/", data-role="button", data-icon="minus", data-iconpos="top", data-mini="true") Cancel
+      else
+          a(href="/home/edit", data-role="button", data-icon="gear", data-iconpos="top", data-mini="true") Edit
     div.ui-block-c
       button(data-icon="info", data-iconpos="top", data-mini="true") Help
   
+  - if (profilelist.length == 0)
+    p You don't have any profiles yet.
+    a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-theme="b") Create one!
+
+
   // - need to put the input checkbox inside the li element in order to get the split-li-gear on the right. Ugly, but it'll have to do for now
-  .profilelist
-    ul(data-role="listview", data-inset="true", data-split-icon="gear", data-theme="c")
-      - each profile, i in profilelist
-        li
-          a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
-            input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
-            label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
-          a(href="/profile/#{profile._id}", data-mini="true")
+  form(action="/home", method="post")
+    .profilelist
+      if (editmode == true)
+        ul(data-role="listview", data-inset="true", data-split-icon="delete", data-theme="c")
+          each profile, i in profilelist
+            li
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
+                input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
+                label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')")
+      else
+        ul(data-role="listview", data-inset="true", data-split-icon="edit", data-theme="c")
+          each profile, i in profilelist
+            li
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
+                input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
+                label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
+              a(href="/profile/#{profile._id}", data-mini="true")
 

@@ -8,6 +8,10 @@ block content
       h3
         span(style="color:#5990BF") Update successful!
 
+  // - use a hidden input to expose the def value, so that custom.js can look at it and trigger the checkbox if appropriate
+  // - input(type="hidden", name="hidden", value="#{def}", id="hidden")
+
+
   form(action="/profile/#{profile._id}", method="post", data-ajax="true")
     div(data-role="fieldcontain")
       label(for="name") Name:
@@ -21,14 +25,18 @@ block content
       label(for="medications") Medications:
       textarea(cols="40", rows="10", name="medications", id="medications", data-mini="false") #{medications}
 
-    div(data-role="fieldcontain")
-        label(for="default") Checked by default?
-        input(type="checkbox", name="default", id="default", data-mini="false")
-        if #{profile.def}
-          
+    //- 
+      // unable to get default checking to work for now
+      div(data-role="fieldcontain")
+          label(for="default") Checked by default?
+          input(type="checkbox", name="default", id="default", data-mini="false")
 
     div.ui-grid-a
       div.ui-block-a
         a(href="/home", data-role="button", data-icon="back") Back
       div.ui-block-b
         input(type="submit", name="submit", value="Update", data-icon="check", data-theme="b")
+
+   
+
+

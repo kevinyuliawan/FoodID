@@ -87,9 +87,11 @@ exports.profileget = function(req, res){
       title: profile.name,
       pageid: 'showprofilepage',
       profile: profile,
+      def: profile.def,
       allergies: allergyString,
       medications: medicationString,
-      updatesuccess: req.query.success
+      updatesuccess: req.query.success,
+      cache: 'false'
     });
   });
 };

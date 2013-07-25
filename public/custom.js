@@ -2,8 +2,6 @@
 $(document).bind("mobileinit", function(){
   //apply overrides here
 
-
-
   /*                   */
   /* home page scripts */
   /*                   */
@@ -40,6 +38,24 @@ $(document).bind("mobileinit", function(){
           $('#filetext').val($(this).val().replace(/C:\\fakepath\\/i, ''));
       });
   });
+
+  
+  /*                                                     */
+  /* show profile page scripts to allow checkmarking     */
+  /*                                                     */
+
+  $('#showprofilepage').live('pageinit', function(event){
+      
+      /* checkmarking on update doesn't work
+      console.log('Hijacking profile page');
+      if  ( $('#hidden').val() == 'true')
+            {$('#default').prop('checked',true).checkboxradio('refresh'); console.log('checked it'); $('#default').checkboxradio('refresh')}
+      else  { $('#default').prop('checked',false).checkboxradio('refresh'); console.log('didnt check it'); $('#default').checkboxradio('refresh')};
+      */
+
+      // $('#default').checkboxradio('refresh');
+  });
+
 
 
 
