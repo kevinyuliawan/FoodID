@@ -79,6 +79,7 @@ exports.adduser = function(firstname, lastname, email, phone, password, req, res
     User.findById(userid, function(err, user){
       var foundProfile = user.profiles.id(profid);
       foundProfile.name = config.name;
+      foundProfile.def = config.def;
       foundProfile.allergies = config.allergies;
       foundProfile.medications = config.medications;
       user.save(function(err){

@@ -28,6 +28,10 @@ exports.createpost = function(req, res){
 
   console.log('jsonAllergies: ' + jsonAllergies);
   console.log('jsonMedications: ' + jsonMedications);
+  var checkboxValue = false;
+  if (typeof(req.body.default) != 'undefined')
+    {checkboxValue = true;}
+  console.log('checkbox value: ' + checkboxValue);
 
   /*
       Profile schema as of 7/25/13:
@@ -45,7 +49,7 @@ exports.createpost = function(req, res){
       // params for the profile to be added
       req.body.name,
       false,
-      false,
+      checkboxValue,
       req.session.profiles.length,
       jsonAllergies, 
       jsonMedications,
@@ -92,9 +96,13 @@ exports.profileget = function(req, res){
 
 exports.profilepost = function(req, res){
   var profName = req.body.name;
+  var checkboxValue = false;
+  if (typeof(req.body.default) != 'undefined')
+    {checkboxValue = true;}
+  console.log('checkbox value: ' + checkboxValue);
   var profAllergies = createJSONfromCSV(req.body.allergies.toString().replace(/\s/g, '').split(','));
   var profMedications = createJSONfromCSV(req.body.medications.toString().replace(/\s/g, '').split(','));
-  var config = {name: profName, allergies: profAllergies, medications: profMedications};
+  var config = {name: profName, def: checkboxValue, allergies: profAllergies, medications: profMedications};
   UserModel.updateProfile(req.session.uid, req.params.profid, config, function(user, profile){
     // Update the session
     req.session.profiles = user.profiles;

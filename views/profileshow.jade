@@ -21,6 +21,12 @@ block content
       label(for="medications") Medications:
       textarea(cols="40", rows="10", name="medications", id="medications", data-mini="false") #{medications}
 
+    div(data-role="fieldcontain")
+        label(for="default") Checked by default?
+        input(type="checkbox", name="default", id="default", data-mini="false")
+        if #{profile.def}
+          
+
     div.ui-grid-a
       div.ui-block-a
         a(href="/home", data-role="button", data-icon="back") Back
