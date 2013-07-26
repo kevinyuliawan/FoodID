@@ -1,0 +1,20 @@
+var spellcheck = require( "spell" );
+
+var filldict = require( "./filldict" );
+
+var correct = require( "./correct" );
+
+var define = require( "./define" );
+
+
+var test = [ "corn svrup", "cottdnseed", "5ovbean", "stafich" ];
+
+var dictionary = spellcheck();
+
+dictionary = filldict.fill( dictionary, "dict/ingred-big.txt" );
+
+for( var i = 0; i < test.length; i++ )
+{
+  console.log( "Checking word [" + test[i] + ']' );
+  dictionary = correct.correct( dictionary, test[i] );
+}

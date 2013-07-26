@@ -1,0 +1,25 @@
+// A "define" function to be used for outputting suggestions
+
+var spellcheck = require( "spell" );
+
+var define = function( dict, srch )
+{
+  /*
+   * `dict' refers to a dictionary from spell. `srch' refers to a word to
+   *  search for.
+   */
+
+  return dict.suggest( srch );
+}
+
+var stringify = function( sugg )
+{
+  var output = "";
+  for( var i = 0; i < suggestion.length; i++ )
+  {
+    output += word["word"] + ": " + word["score"] + "\n";
+  }
+}
+
+exports.define = define;
+exports.stringify = stringify;
