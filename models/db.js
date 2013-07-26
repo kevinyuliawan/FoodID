@@ -37,4 +37,5 @@ mongoose.model('User', userSchema);
 mongoose.model('Allergy', allergySchema);
 mongoose.model('Medication', medicationSchema);
 
-mongoose.connect('mongodb://localhost/foodsentry');
+var mongooseUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/foodsentry';
+mongoose.connect('mongooseUri');
