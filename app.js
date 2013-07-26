@@ -23,10 +23,12 @@ var express = require('express')
   , results = require('./routes/results')
   , register = require('./routes/register')
   , profile = require('./routes/profile')
+  , database = require('./routes/database')
   , http = require('http')
   , path = require('path');
 
 var app = express();
+
 
 // globals require to make those variables available
 var globals = require('./routes/globals');
@@ -52,7 +54,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+// app.get('/users', user.list);
 app.get('/login', login.get);
 app.post('/login', login.post);
 app.get('/home', routes.home);
@@ -72,6 +74,9 @@ app.post('/profile/create', profile.createpost);
 app.get('/profile/:profid', profile.profileget);
 app.get('/profile/:profid?success', profile.profileget);
 app.post('/profile/:profid', profile.profilepost);
+
+app.get('/database', database.get);
+
 
 
 

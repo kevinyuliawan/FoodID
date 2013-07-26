@@ -3,17 +3,20 @@ extends layout
 block content
   h3 Welcome #{username}!
 
-  a(href="/scan", data-role="button", data-theme="e") Scan
+  if (editmode == true)
+    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top" ).ui-disabled Scan A Label
+  else
+    a(href="/scan", data-role="button", data-theme="e", data-icon="search", data-iconpos="top") Scan A Label
 
   // - three column grid for buttons
   div.ui-grid-b
     div.ui-block-a
-      if(editmode == true)
+      if (editmode == true)
           a(href="/home/delete", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true") Delete
       else
           a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
-      if(editmode == true)
+      if (editmode == true)
           a(href="/home/", data-role="button", data-icon="minus", data-iconpos="top", data-mini="true") Cancel
       else
           a(href="/home/edit", data-role="button", data-icon="gear", data-iconpos="top", data-mini="true") Edit

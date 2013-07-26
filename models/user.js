@@ -40,7 +40,7 @@ exports.adduser = function(firstname, lastname, email, phone, password, req, res
     redirect(user);
   });
 
-};
+} // end adduser;
 
   exports.findUserById = function(userid, callback){
     User.model.findOne({_id: userid}, function(err, user){

@@ -6,10 +6,29 @@ block content
 
   div(data-role="fieldcontain")
     input(type="text", id="filetext", placeholder="File name").ui-disabled
-    button#btn-choose Choose
-    button#btn-remove Remove
+    button#btn-choose(data-theme="b") Choose
+    button#btn-remove(data-theme="b") Remove
+
+  div(data-role="fieldcontain")
+    p Profiles to scan with:
+    ul(data-role="listview", data-inset="true", data-split-icon="info")
+      li
+        a(href="#", data-mini="true") Person one
+        a(href="#")
+      li
+        a(href="#", data-mini="true") Person two
+        a(href="#")
+      li
+        a(href="#", data-mini="true") Person three
+        a(href="#")
+
+  div(data-role="fieldcontain")
+    label(for="additional", class="ui-hidden-accessible") Additional allergies:
+    textarea(cols="40", rows="10", name="additional", id="additional", placeholder="Additional ingredients to scan for: ", data-inset="true")
+
 
   div(data-role="fieldcontain")
     form#uploadForm(action="/scan", method="post", data-ajax="false", enctype='multipart/form-data', id="scanForm")
       input(type="file", name="scan", id="scan", style="display:none;")
-      input(type="submit", value="Upload", data-theme="b")
+      input(type="submit", value="Upload", data-theme="e", data-icon="arrow-u", data-iconpos="top")
+
