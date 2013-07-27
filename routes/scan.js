@@ -2,17 +2,39 @@ var nodecr = require('nodecr');
 // resize module to make nodecr more accurate
 var resize = require('./resize');
 var fs = require('fs');
+var User = require('../models/user');
 
 
 exports.get = function(req, res){
+  var profileList = [];
+  console.log('getting');
   res.render('scan', {
     title: 'Scan',
-    pageid: 'scanpage'
+    pageid: 'scanpage',
+    profiles: profileList
   }); 
+
 }
+
+
+exports.put = function(req, res){
+  var profileList = req.body.profiles.split(',');
+
+  User.getProfiles(req.session.uid, profileList, function(user, profileArray){
+    console.log('rendering...');
+    res.render('scan', {
+      title: 'Scan',
+      pageid: 'scanpage',
+      profiles: profileArray,
+      pageurl:'/scan'
+    });
+  });
+
+};
 
 exports.post = function(req, res){
   // get image and its path
+  // TODO after getting and storing all the text in a hidden field: var inputText = req.body.inputtext;
   var image = req.files.scan;
   var pathToImage = image._writeStream.path;
   console.log('the original imagepath: ' + pathToImage);

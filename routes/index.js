@@ -18,7 +18,8 @@ exports.home = function(req, res){
     pageurl: '/home',
     username: req.session.username,
     profilelist: req.session.profiles,
-    cache: 'never'
+    cache: 'never',
+    editmode: false
    });
   }
   else(res.redirect('/login'));
@@ -47,9 +48,6 @@ exports.homeEditPost = function(req, res){
     res.redirect('/home');
   });
 };
-
-
-
 
 
 exports.error = function(req, res){

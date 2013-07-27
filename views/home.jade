@@ -4,9 +4,9 @@ block content
   h3 Welcome #{username}!
 
   if (editmode == true)
-    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top" ).ui-disabled Scan A Label
+    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top", id="scanbutton" ).ui-disabled Scan A Label
   else
-    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top", onclick="$('#homeform').submit();") Scan A Label
+    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top", id="scanbutton") Scan A Label
 
   // - three column grid for buttons
   div.ui-grid-b
@@ -31,17 +31,19 @@ block content
     a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-theme="b") Create one!
 
 
-  // - set variables for the form action depending on if editmode is true
+  // - set variables for the form action depending on if editmode is true, otherwise for the scan button, the form is handled by jQuery
   - if(editmode == true)
-    - var action = '/home/edit'
+    - var action = '/home/edit';
+    - var method = 'post'
   - else
-    - var action = '/scan'
+    - var action = '/scan/profiles';
+    - var method = 'post'
 
   // - need to put the input checkbox inside the li element in order to get the split-li-gear on the right. Ugly, but it'll have to do for now
-  form(action= action, method="post", id="homeform")
+  form(action= action, method= method, id="homeform")
     .profilelist
       input(type="hidden", name="profiles", id="profiles")
-      if (editmode == true)
+      - if (editmode == true)
         ul(data-role="listview", data-inset="true", data-split-icon="delete", data-theme="c")
           each profile, i in profilelist
             li

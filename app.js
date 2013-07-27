@@ -64,6 +64,8 @@ app.post('/home/edit', routes.homeEditPost)
 
 app.get('/scan', scan.get);
 app.post('/scan', scan.post);
+app.post('/scan/profiles', scan.put);
+
 app.get('/results', results.get);
 
 app.get('/register', register.get);

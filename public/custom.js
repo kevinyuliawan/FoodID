@@ -11,6 +11,7 @@ $(document).bind("mobileinit", function(){
   // array to hold the array of profiles that have been selected
   $.mobile.selProfList= [];
 
+  // auxiliary remove function to remove by value, used with updating the selected profiles array
   function removeA(arr) {
     var what, a = arguments, L = a.length, ax;
     while (L > 1 && arr.length) {
@@ -20,7 +21,7 @@ $(document).bind("mobileinit", function(){
         }
     }
     return arr;
-}
+  };
 
 
   $.mobile.toggle = function(id, profileid){
@@ -42,24 +43,27 @@ $(document).bind("mobileinit", function(){
 
   $('#homepage').live('pageinit', function(event){
       console.log('hijacking page');
-      var curList = {};
       // need to disable label checkbox click events so that the clicks don't register, otherwise it would check then uncheck it with both the label and a:href events firing
       $('.labelcheckbox').off();
       $.mobile.selProfList = [];
 
+      // need to set the scan button to submit a PUT request to scan
+      $('#scanbutton').click(function(e){
+        // TODO validate here
+        $('#homeform').submit();
 
-  });
+
+      });
+
+    });
 
   $('#homeeditpage').live('pageinit', function(event){
       console.log('hijacking page');
-      var curList = {};
       // need to disable label checkbox click events so that the clicks don't register, otherwise it would check then uncheck it with both the label and a:href events firing
       $('.labelcheckbox').off();
-
       $.mobile.selProfList = [];
 
-
-  });
+    });
   
 
   /*                          */

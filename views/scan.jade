@@ -11,17 +11,16 @@ block content
 
   div(data-role="fieldcontain")
     p Profiles to scan with:
-    ul(data-role="listview", data-inset="true", data-split-icon="info")
-      li
-        a(href="#", data-mini="true") Person one
-        a(href="#")
-      li
-        a(href="#", data-mini="true") Person two
-        a(href="#")
-      li
-        a(href="#", data-mini="true") Person three
-        a(href="#")
+      - if (profiles.length !=0)
+        ul(data-role="listview", data-inset="true", data-split-icon="info")
+          for profile in profiles
+            li
+                a(href="#", data-mini="true") #{profile.name}
+                a(href="#")
+      - if (profiles.length == 0)
+        p No profiles were selected.
 
+      
   div(data-role="fieldcontain")
     label(for="additional", class="ui-hidden-accessible") Additional allergies:
     textarea(cols="40", rows="10", name="additional", id="additional", placeholder="Additional ingredients to scan for: ", data-inset="true")
