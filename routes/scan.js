@@ -18,17 +18,25 @@ exports.get = function(req, res){
 
 
 exports.put = function(req, res){
-  var profileList = req.body.profiles.split(',');
-
-  User.getProfiles(req.session.uid, profileList, function(user, profileArray){
-    console.log('rendering...');
-    res.render('scan', {
-      title: 'Scan',
-      pageid: 'scanpage',
-      profiles: profileArray,
-      pageurl:'/scan'
+  // create array to send to user model, initialized as empty
+  var profileList = [];
+  if(req.body.profiles != '') profileList = req.body.profiles.split(',');
+  console.log('profilelist: ' + profileList);
+  if(profileList.length != 0 ){
+    User.getProfiles(req.session.uid, profileList, function(user, profileArray){
+      res.render('scan', {
+        title: 'Scan',
+        pageid: 'scanpage',
+        profiles: profileArray,
+        pageurl:'/scan'
+      });
     });
-  });
+  }
+  else{
+    res.redirect('/scan');
+  }
+
+
 
 };
 

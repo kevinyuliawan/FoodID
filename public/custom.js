@@ -41,7 +41,9 @@ $(document).bind("mobileinit", function(){
     };
   };
 
-  $('#homepage').live('pageinit', function(event){
+
+  $(document).delegate('#homepage', 'pageshow', function () {
+    //Your code for each page load here
       console.log('hijacking page');
       // need to disable label checkbox click events so that the clicks don't register, otherwise it would check then uncheck it with both the label and a:href events firing
       $('.labelcheckbox').off();
@@ -50,18 +52,32 @@ $(document).bind("mobileinit", function(){
       // need to set the scan button to submit a PUT request to scan
       $('#scanbutton').click(function(e){
         // TODO validate here
+        $.mobile.selProfList = [];
         $('#homeform').submit();
-
-
       });
+
+});
+
+  $('#homepage').live('pageinit', function(event){
+
 
     });
 
-  $('#homeeditpage').live('pageinit', function(event){
-      console.log('hijacking page');
+  $(document).delegate('#homeeditpage', 'pageshow', function () {
+    //Your code for each page load here
+    console.log('hijacking page');
       // need to disable label checkbox click events so that the clicks don't register, otherwise it would check then uncheck it with both the label and a:href events firing
       $('.labelcheckbox').off();
       $.mobile.selProfList = [];
+
+      $('#deletebutton').click(function(e){
+        $.mobile.selProfList = [];
+        $('#homeform').submit();
+      });
+});
+
+  $('#homeeditpage').live('pageinit', function(event){
+      
 
     });
   

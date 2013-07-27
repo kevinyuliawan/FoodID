@@ -11,14 +11,16 @@ block content
 
   div(data-role="fieldcontain")
     p Profiles to scan with:
-      - if (profiles.length !=0)
-        ul(data-role="listview", data-inset="true", data-split-icon="info")
-          for profile in profiles
-            li
-                a(href="#", data-mini="true") #{profile.name}
-                a(href="#")
       - if (profiles.length == 0)
         p No profiles were selected.
+      - else
+        - if (profiles.length !=0)
+          ul(data-role="listview", data-inset="true", data-split-icon="info")
+            for profile in profiles
+              li
+                  a(href="#", data-mini="true") #{profile.name}
+                  a(href="#")
+        
 
       
   div(data-role="fieldcontain")

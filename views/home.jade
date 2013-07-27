@@ -12,7 +12,7 @@ block content
   div.ui-grid-b
     div.ui-block-a
       if (editmode == true)
-          a(href="#", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true", onclick="$('#homeform').submit();") Delete
+          a(href="#", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true", id="deletebutton") Delete
       else
           a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
@@ -40,7 +40,7 @@ block content
     - var method = 'post'
 
   // - need to put the input checkbox inside the li element in order to get the split-li-gear on the right. Ugly, but it'll have to do for now
-  form(action= action, method= method, id="homeform")
+  form(action= action, method= method, id="homeform", data-ajax="true")
     .profilelist
       input(type="hidden", name="profiles", id="profiles")
       - if (editmode == true)

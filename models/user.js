@@ -80,7 +80,6 @@ exports.adduser = function(firstname, lastname, email, phone, password, req, res
       var foundArray = [];
       for(var y=0;y<profiles.length;y++){
         foundArray.push(user.profiles.id(profiles[y]));
-        console.log('found array at 0: ' + foundArray[0]);
       };
       callback(user, foundArray);
     })
