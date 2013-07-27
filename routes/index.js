@@ -1,3 +1,4 @@
+var User = require('../models/user');
 
 /*
  * GET home page.
@@ -23,7 +24,7 @@ exports.home = function(req, res){
   else(res.redirect('/login'));
 };
 
-exports.homeedit = function(req, res){
+exports.homeEditGet = function(req, res){
   res.render('home', {
     title: 'Home',
     pageid: 'homeeditpage',
@@ -34,6 +35,22 @@ exports.homeedit = function(req, res){
     editmode: true
   });
 };
+
+
+exports.homeEditPost = function(req, res){
+  var profileList = req.body.profiles.split(',');
+  console.log(typeof profileList);
+  console.log(profileList);
+
+  User.removeProfiles(req.session.uid, profileList, function(user){
+    req.session.profiles = user.profiles;
+    res.redirect('/home');
+  });
+};
+
+
+
+
 
 exports.error = function(req, res){
   res.render('error', {title: 'Error', pageid: 'errorpage'});

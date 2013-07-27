@@ -57,8 +57,11 @@ app.get('/', routes.index);
 // app.get('/users', user.list);
 app.get('/login', login.get);
 app.post('/login', login.post);
+
 app.get('/home', routes.home);
-app.get('/home/edit', routes.homeedit);
+app.get('/home/edit', routes.homeEditGet);
+app.post('/home/edit', routes.homeEditPost)
+
 app.get('/scan', scan.get);
 app.post('/scan', scan.post);
 app.get('/results', results.get);

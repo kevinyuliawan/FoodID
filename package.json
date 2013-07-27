@@ -1,5 +1,5 @@
 {
-  "name": "FoodSentry",
+  "name": "foodguard",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "connect": "*",
     "mongodb": "*",
     "mongoose": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "async": "*"
   }
 }

@@ -88,4 +88,23 @@ exports.adduser = function(firstname, lastname, email, phone, password, req, res
     });
   }
 
+  exports.removeProfile = function(userid, profid, callback){
+    User.findById(userid, function(err, user){
+      var removedprofile = user.profiles.id(profid).remove();
+      user.save(function(err){
+        callback(removedprofile, user);
+      });
+    });
+  };
+
+  exports.removeProfiles = function(userid, profiles, callback){
+    User.findById(userid, function(err, user){
+      for(var x=0;x<profiles.length;x++){
+        user.profiles.id(profiles[x]).remove();
+        user.save(function(err){if(err) throw err;});
+      };
+      callback(user);
+    });
+  }
+
 exports.model = User;

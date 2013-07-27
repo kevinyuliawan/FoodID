@@ -6,13 +6,13 @@ block content
   if (editmode == true)
     a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top" ).ui-disabled Scan A Label
   else
-    a(href="/scan", data-role="button", data-theme="e", data-icon="search", data-iconpos="top") Scan A Label
+    a(href="#", data-role="button", data-theme="e", data-icon="search", data-iconpos="top", onclick="$('#homeform').submit();") Scan A Label
 
   // - three column grid for buttons
   div.ui-grid-b
     div.ui-block-a
       if (editmode == true)
-          a(href="/home/delete", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true") Delete
+          a(href="#", data-role="button", data-icon="delete", data-iconpos="top", data-mini="true", onclick="$('#homeform').submit();") Delete
       else
           a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-mini="true") Add
     div.ui-block-b
@@ -31,23 +31,30 @@ block content
     a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-theme="b") Create one!
 
 
+  // - set variables for the form action depending on if editmode is true
+  - if(editmode == true)
+    - var action = '/home/edit'
+  - else
+    - var action = '/scan'
+
   // - need to put the input checkbox inside the li element in order to get the split-li-gear on the right. Ugly, but it'll have to do for now
-  form(action="/home", method="post")
+  form(action= action, method="post", id="homeform")
     .profilelist
+      input(type="hidden", name="profiles", id="profiles")
       if (editmode == true)
         ul(data-role="listview", data-inset="true", data-split-icon="delete", data-theme="c")
           each profile, i in profilelist
             li
-              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');", data-mini="true")
                 input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
-                label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
-              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')")
+                label(for="checkbox-#{i}", data-mini="true", class="labelcheckbox") #{profile.name}
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');")
       else
         ul(data-role="listview", data-inset="true", data-split-icon="edit", data-theme="c")
           each profile, i in profilelist
             li
-              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true")
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');", data-mini="true")
                 input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
-                label(for="checkbox-#{i}", onclick="$.mobile.toggle('#checkbox-#{i}')", data-mini="true") #{profile.name}
+                label(for="checkbox-#{i}", data-mini="true", class="labelcheckbox") #{profile.name}
               a(href="/profile/#{profile._id}", data-mini="true")
 
