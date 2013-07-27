@@ -3,7 +3,8 @@ var user = require('../models/user');
 exports.get = function(req, res){
   res.render('register', {
     title: 'Register',
-    pageid: 'registerpage'
+    pageid: 'registerpage',
+    navbar: false
   });
 };
 

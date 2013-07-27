@@ -75,7 +75,11 @@ app.get('/profile/:profid', profile.profileget);
 app.get('/profile/:profid?success', profile.profileget);
 app.post('/profile/:profid', profile.profilepost);
 
+// return all current users
 app.get('/database', database.get);
+// delete all current users
+app.get('/database/clear', database.clear);
+
 
 
 

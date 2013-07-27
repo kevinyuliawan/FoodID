@@ -14,10 +14,16 @@ html(lang="en")
   body
     div(data-role="page", id= pageid, data-url= pageurl, data-cache= cache)
       div(data-role="header", data-id="pageheader", data-position="fixed", data-theme="b")
-        h1 FoodSentry
+        h1 FoodGuard
       div(data-role="content")
-          block content
+        block content
       div(data-role="footer", data-theme="b", data-id="cignafooter", data-position="fixed")
+        - if (navbar != false)
+          div(data-role="navbar", data-iconpos="left")
+            ul
+              li: a(href="/home", data-icon="home", data-theme="c", data-mini="true") Home
+              li: a(href="/scan", data-icon="search", data-theme="c", data-mini="true") Scan
+              li: a(href="/login?out=true", data-icon="back", data-theme="c", data-mini="true") Logout
         h1 &copy; 2013 Cigna
 
 

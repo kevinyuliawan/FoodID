@@ -1,7 +1,18 @@
 var User = require('../models/user');
 
 exports.get = function(req, res){
-  res.render('login', { title: 'Login', pageid: 'loginpage' });
+  // handle a logout if specified in query, coming from the logout button
+  if(req.query.out == 'true'){
+    console.log('req.query.out is: ' + req.query.out);
+    req.session.destroy();
+  };
+
+  res.render('login', { 
+    title: 'Login', 
+    pageid: 'loginpage',
+    logout: req.query.out,
+    navbar: false
+   });
 };
 
 exports.post = function(req, res){
@@ -30,7 +41,7 @@ exports.post = function(req, res){
   }
 
   function renderIncorrectLogin(){
-    res.render('login', {title: 'Login', pageid: 'loginpage', error: true});
+    res.render('login', {title: 'Login', pageid: 'loginpage', error: true, navbar: false});
   }
 
   // build the mongo query using the submitted type and what's submitted

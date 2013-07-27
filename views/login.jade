@@ -3,8 +3,11 @@ extends layout
 block content
   h3 Login
   if error
-    p
+    h4
       span(style="color:red") Your supplied information is incorrect. Please try again.
+  if logout
+    h4
+      span(style="color:#5990BF") You have successfully logged out.
 
   <form action="/login" method="post" data-ajax="true">
   <div data-role="fieldcontain" >
@@ -22,6 +25,6 @@ block content
 
 
   <div data-role="fieldcontain">
-  <h3>New to FoodSentry?</h3>
+  <h3>New to FoodGuard?</h3>
   <a href="/register" data-role="button" data-icon="forward" data-theme="e">Register</a>
   </div>

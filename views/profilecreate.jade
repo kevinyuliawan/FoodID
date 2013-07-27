@@ -4,16 +4,16 @@ block content
   h3= title
   form(action="/profile/create", method="post", data-ajax="true")
       div(data-role="fieldcontain")
-        label(for="profilename", class="ui-hidden-accessible") Name:
-        input(type="text", name="name", id="name", placeholder="Name", data-mini="false", data-clear-btn="true")
+        label(for="profilename") Name:
+        input(type="text", name="name", id="name", placeholder='e.g. "Billy" or "Cousin Bob"', data-mini="false", data-clear-btn="true")
 
       div(data-role="fieldcontain")
-        label(for="allergies", class="ui-hidden-accessible") Allergies:
-        textarea(cols="40", rows="10", name="allergies", id="allergies", placeholder="Allergies, separated by a comma:", data-mini="false", data-clear-btn="true", data-inset="true")
+        label(for="allergies") Allergies, separated by a comma:
+        textarea(cols="40", rows="10", name="allergies", id="allergies", placeholder='e.g. "peanuts, wheat, soy, lactose"', data-mini="false", data-clear-btn="true", data-inset="true")
 
       div(data-role="fieldcontain")
-        label(for="medications", class="ui-hidden-accessible") Medications:
-        textarea(cols="40", rows="10", name="medications", id="medications", placeholder="Medications, separated by a comma:", data-mini="false", data-clear-btn="true", data-inset="true")
+        label(for="medications") Medications, separated by a comma:
+        textarea(cols="40", rows="10", name="medications", id="medications", placeholder='e.g. "Allegra, Tylenol, Penicillin"', data-mini="false", data-clear-btn="true", data-inset="true")
 
       //-
         // unable to get working for now

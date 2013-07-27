@@ -19,7 +19,10 @@ block content
       if (editmode == true)
           a(href="/home/", data-role="button", data-icon="minus", data-iconpos="top", data-mini="true") Cancel
       else
-          a(href="/home/edit", data-role="button", data-icon="gear", data-iconpos="top", data-mini="true") Edit
+        - if(profilelist.length == 0) // If there's no profiles, disable the 'Edit' button
+            a(href="/home/edit", data-role="button", data-icon="gear", data-iconpos="top", data-mini="true").ui-disabled Edit
+        - else
+            a(href="/home/edit", data-role="button", data-icon="gear", data-iconpos="top", data-mini="true") Edit
     div.ui-block-c
       button(data-icon="info", data-iconpos="top", data-mini="true") Help
   

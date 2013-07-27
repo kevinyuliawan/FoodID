@@ -17,7 +17,7 @@ exports.home = function(req, res){
     pageurl: '/home',
     username: req.session.username,
     profilelist: req.session.profiles,
-    cache: 'false'
+    cache: 'never'
    });
   }
   else(res.redirect('/login'));
@@ -30,7 +30,7 @@ exports.homeedit = function(req, res){
     pageurl: '/home/edit',
     username: req.session.username,
     profilelist: req.session.profiles,
-    cache: 'false',
+    cache: 'never',
     editmode: true
   });
 };
@@ -43,6 +43,8 @@ exports.success = function(req, res){
   res.render('success', {
     title: 'Success',
     pageid: 'successpage',
-    redirect: 'home'
+    redirect: 'home',
+    navbar: false
   });
 };
+
