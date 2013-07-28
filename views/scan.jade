@@ -19,7 +19,7 @@ block content
             for profile in profiles
               li
                   a(href="#", data-mini="true") #{profile.name}
-                  a(href="#")
+                  a(href="/profile/#{profile._id}", data-mini="true")
         
 
       
@@ -31,5 +31,8 @@ block content
   div(data-role="fieldcontain")
     form#uploadForm(action="/scan", method="post", data-ajax="false", enctype='multipart/form-data', id="scanForm")
       input(type="file", name="scan", id="scan", style="display:none;")
-      input(type="submit", value="Upload", data-theme="e", data-icon="arrow-u", data-iconpos="top")
+      // - hidden inputs to hold the value of the allergies and additional allergies lists
+      input(type="hidden", name="allergies", id="allergies", value="#{list}").ui-disabled
+      input(type="hidden", name="addallergies", id="addallergies").ui-disabled
+      input(type="submit", value="Upload", data-theme="e", data-icon="arrow-u", data-iconpos="top", id="uploadbutton")
 

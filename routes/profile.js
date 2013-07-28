@@ -20,10 +20,10 @@ function createJSONfromCSV(csv){
 
 exports.createpost = function(req, res){
   // create an allergies JSON object, which is an array of {name: String} objects
-  var origAllergies = req.body.allergies.toString().replace(/\s/g, '').split(',');
+  var origAllergies = req.body.allergies.toString().split(', ');
   var jsonAllergies = createJSONfromCSV(origAllergies);
 
-  var origMedications = req.body.medications.toString().replace(/\s/g, '').split(',');
+  var origMedications = req.body.medications.split(', ');
   var jsonMedications = createJSONfromCSV(origMedications);
 
   console.log('jsonAllergies: ' + jsonAllergies);
@@ -102,8 +102,8 @@ exports.profilepost = function(req, res){
   if (typeof(req.body.default) != 'undefined')
     {checkboxValue = true;}
   console.log('checkbox value: ' + checkboxValue);
-  var profAllergies = createJSONfromCSV(req.body.allergies.toString().replace(/\s/g, '').split(','));
-  var profMedications = createJSONfromCSV(req.body.medications.toString().replace(/\s/g, '').split(','));
+  var profAllergies = createJSONfromCSV(req.body.allergies.toString().split(', '));
+  var profMedications = createJSONfromCSV(req.body.medications.split(', '));
   var config = {name: profName, def: checkboxValue, allergies: profAllergies, medications: profMedications};
   UserModel.updateProfile(req.session.uid, req.params.profid, config, function(user, profile){
     // Update the session

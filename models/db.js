@@ -4,8 +4,8 @@ var userSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   name: String,
-  email: String,
-  phone: Number,
+  email: {type: String, unique: true},
+  phone: {type: Number, unique: true},
   password: String,
   profiles: [
     {
@@ -13,8 +13,8 @@ var userSchema = new mongoose.Schema({
       me: Boolean,
       def: Boolean,
       position: Number,
-      allergies: [{name: String}],
-      medications: [{name: String}]
+      allergies: [{name: {type: String, lowercase: true}}],
+      medications: [{name: {type: String}}] //should capitalize
       // allergies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Allergies'}],
       // medications: [{type: mongoose.Schema.Types.ObjectId, ref: 'Medications'}]
     }

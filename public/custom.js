@@ -103,6 +103,14 @@ $(document).bind("mobileinit", function(){
       $('#scan').change(function(){
           $('#filetext').val($(this).val().replace(/C:\\fakepath\\/i, ''));
       });
+
+      $('#additional').change(function(){
+        $('#addallergies').val( $(this).val());
+      });
+
+      $('#uploadbutton').click(function(){
+        $.mobile.loading('show');
+      });
   });
 
   

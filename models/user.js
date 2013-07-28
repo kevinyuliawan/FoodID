@@ -34,13 +34,15 @@ exports.adduser = function(firstname, lastname, email, phone, password, req, res
   };
 
   newUser.save(function(err, user){
-    if(err); //TODO Handle error
-    console.log('saved new user: ');
-    console.log(user);
-    redirect(user);
+    if(err) {res.redirect('/register?error=true'); console.log(err) } //TODO Handle error
+    else{
+      console.log('saved new user: ');
+      console.log(user);
+      redirect(user);
+    };
   });
 
-} // end adduser;
+}; // end adduser;
 
   exports.findUserById = function(userid, callback){
     User.model.findOne({_id: userid}, function(err, user){

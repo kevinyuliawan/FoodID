@@ -4,7 +4,8 @@ exports.get = function(req, res){
   res.render('register', {
     title: 'Register',
     pageid: 'registerpage',
-    navbar: false
+    navbar: false,
+    error: req.query.error
   });
 };
 

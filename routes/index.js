@@ -40,9 +40,6 @@ exports.homeEditGet = function(req, res){
 
 exports.homeEditPost = function(req, res){
   var profileList = req.body.profiles.split(',');
-  console.log(typeof profileList);
-  console.log(profileList);
-
   User.removeProfiles(req.session.uid, profileList, function(user){
     req.session.profiles = user.profiles;
     res.redirect('/home');

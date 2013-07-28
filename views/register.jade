@@ -2,6 +2,8 @@ extends layout
 
 block content
   h3 Register
+  - if(error == 'true')
+    p(style="color:red") Someone with that e-mail or phone number already exists.
   form(action="/register", method="post", data-ajax="true")
     div(data-role="fieldcontain")
       label(for="firstname", class="ui-hidden-accessible") First Name:
@@ -24,6 +26,7 @@ block content
       input(type="password", name="password", id="password", placeholder="Password", data-mini="false", data-clear-btn="true")
 
     input(type="submit", name="submit", value="Register!", data-icon="check", data-theme="b")
+    a(href="/login", data-role="button", data-icon="back") Back
 
 
 
