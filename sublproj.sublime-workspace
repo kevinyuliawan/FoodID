@@ -1,0 +1,375 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"toLowercase",
+				"toLowercase"
+			],
+			[
+				"path",
+				"pathToFile"
+			],
+			[
+				"arti",
+				"articleId"
+			],
+			[
+				"create",
+				"createFromHexString"
+			],
+			[
+				"mongodb",
+				"mongodb"
+			],
+			[
+				"article",
+				"article"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"dummy",
+				"dummyData"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "",
+			"file": "/Users/KevinY/Desktop/.localized",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/scan.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/models/db.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/profile.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/public/custom.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/results.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/results.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/scan.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/home.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/profileshow.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/profilecreate",
+		"/Users/KevinY/Development/TECDP/jqm-test5/outputpre.txt",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/index.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/app.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/package.json",
+		"/Users/KevinY/Development/TECDP/jqm-test5/models/user.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/login.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/register.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/upload.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/layout.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/register.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/profilecreate.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/home-two.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/login.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/database.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/profileget.jade",
+		"/Users/KevinY/Development/TECDP/jqm-test5/views/logout.jade",
+		"/private/etc/mongodb.conf",
+		"/Users/KevinY/Development/TECDP/jqm-test5/Procfile",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/user.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/resize.js",
+		"/Users/KevinY/.bash_profile",
+		"/usr/local/var/log/mongodb/mongo.log",
+		"/Users/KevinY/Development/Web/nodepad/app.js",
+		"/Users/KevinY/Development/Web/nodepad/test.js",
+		"/Users/KevinY/Development/Web/nodepad/views/documents/index.jade",
+		"/Users/KevinY/Development/Web/nodepad/views/documents/edit.jade",
+		"/Users/KevinY/Development/Web/nodepad/views/documents/fields.jade",
+		"/Users/KevinY/Development/Web/nodepad/views/documents/new.jade",
+		"/Users/KevinY/Development/Web/nodepad/models.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/routes/globals.js",
+		"/Users/KevinY/Development/TECDP/web-ocr/routes/upload.js",
+		"/Users/KevinY/Development/TECDP/web-ocr/app.js",
+		"/Users/KevinY/Downloads/jasny-bootstrap/css/jasny-bootstrap.css",
+		"/Users/KevinY/Downloads/jasny-bootstrap/js/jasny-bootstrap.js",
+		"/Users/KevinY/Downloads/bootstrap-fileupload/bootstrap-fileupload.js",
+		"/Users/KevinY/Downloads/bootstrap-fileupload/bootstrap-fileupload.css",
+		"/Users/KevinY/Development/TECDP/jqm-test5/public/jasny-bootstrap/bootstrap-fileupload.min.css",
+		"/Users/KevinY/Downloads/bootstrap (1)/css/bootstrap.min.css",
+		"/Users/KevinY/Development/TECDP/web-ocr/views/upload.jade",
+		"/Users/KevinY/Downloads/bootstrap-fileupload/bootstrap-fileupload.min.css",
+		"/Users/KevinY/Downloads/bootstrap-fileupload/bootstrap-fileupload.min.js",
+		"/Users/KevinY/Development/TECDP/jqm-test5/public/jasny-bootstrap/bootstrap-fileupload.min.js",
+		"/Users/KevinY/Development/TECDP/web-ocr/views/layout.jade",
+		"/Users/KevinY/Development/TECDP/web-ocr/views/index.jade",
+		"/Users/KevinY/Development/TECDP/web-ocr/routes/index.js",
+		"/Users/KevinY/Development/Web/jquerymobile-test/page.html",
+		"/Users/KevinY/Development/Web/jquerymobile-test/app.css",
+		"/Users/KevinY/Development/Web/jquerymobile-test/index.html",
+		"/Users/KevinY/.ssh/config",
+		"/Users/KevinY/Development/Web/web-ocr/views/results.jade",
+		"/Users/KevinY/Development/Web/web-ocr/views/upload.jade",
+		"/Users/KevinY/Development/Web/web-ocr/app.js",
+		"/Users/KevinY/Development/Web/web-ocr/routes/index.js",
+		"/Users/KevinY/Development/Web/web-ocr/routes/upload.js",
+		"/Users/KevinY/Development/Web/web-ocr/.git/.gitignore",
+		"/Users/KevinY/Development/Web/web-ocr/routes/results.js",
+		"/Users/KevinY/Development/Web/web-ocr/routes/index.jade",
+		"/Users/KevinY/Development/Web/web-ocr/routes/globals.js",
+		"/Users/KevinY/Development/Web/exp-test/package.json",
+		"/Users/KevinY/Development/Web/fileupload/package.json",
+		"/Users/KevinY/Development/Web/web-ocr/package.json",
+		"/Users/KevinY/Development/Web/fileupload/routes/index.js",
+		"/Users/KevinY/Development/Web/fileupload/views/index.jade",
+		"/Users/KevinY/Development/Web/fileupload/app.js",
+		"/Users/KevinY/Development/Web/fileupload/views/upload.jade",
+		"/Users/KevinY/Development/Web/web-ocr/views/layout.jade",
+		"/Users/KevinY/Development/Web/web-ocr/routes/layout.jade",
+		"/Users/KevinY/Development/Web/web-ocr/public/stylesheets/bootstrap-fileupload/bootstrap-fileupload.js",
+		"/Users/KevinY/Development/Web/fileuploader/package.json",
+		"/Users/KevinY/Development/Web/express-test3/package.json",
+		"/Users/KevinY/Development/Web/fileupload/routes/uploadHelper.js",
+		"/Users/KevinY/Development/Web/express-test3/routes/index.js",
+		"/Users/KevinY/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/KevinY/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/KevinY/Development/Web/express-test2/views/index.jade",
+		"/Users/KevinY/Development/Web/express-test3/public/stylesheets/style.styl",
+		"/Users/KevinY/Development/Web/express-test3/views/landing.jade",
+		"/Users/KevinY/Development/Web/express-test3/views/layout.jade",
+		"/Users/KevinY/Development/Web/express-test3/view/layout.jade",
+		"/Users/KevinY/Development/Web/express-test3/app.js",
+		"/Users/KevinY/Development/Web/express-test2/package.json",
+		"/Users/KevinY/Development/Web/express-test3/views/index.jade",
+		"/Users/KevinY/Development/Web/express-test3/views/index.js",
+		"/Users/KevinY/Development/TECDP/out.txt",
+		"/Users/KevinY/Development/Web/express-test2/routes/index.js",
+		"/Users/KevinY/Development/Web/express-test2/app.js",
+		"/Users/KevinY/Development/Web/express-test/app.js",
+		"/Users/KevinY/Development/Web/express-test/package.json",
+		"/Users/KevinY/Development/Web/bswnae/express_example/views/layout.jade",
+		"/Users/KevinY/Development/Web/bswnae/express_example/public/stylesheets/style.styl",
+		"/Users/KevinY/Development/Web/bswnae/express_example/app.js",
+		"/Users/KevinY/Development/Web/node-and-express/README.md",
+		"/Users/KevinY/Development/Web/node-and-express/package.json",
+		"/Users/KevinY/Development/Web/node-and-express/express/app.js",
+		"/Users/KevinY/Development/StartupEngineering/hw4/bitstarter/index.html",
+		"/Users/KevinY/Development/StartupEngineering/hw4/bitstarter/web.js",
+		"/Users/KevinY/Development/Web/bswnae/express_example/public/stylesheets/app.js",
+		"/Users/KevinY/Development/Web/bswnae/express_example/views/index.jade",
+		"/Users/KevinY/Development/Web/express-mongodb/articleprovider-mongodb.js",
+		"/Users/KevinY/Development/Web/express-mongodb/public/stylesheets/style.styl",
+		"/Users/KevinY/Development/Web/express-mongodb/app-simple.js",
+		"/Users/KevinY/Development/Web/express-mongodb/views/blog_show.jade",
+		"/Users/KevinY/Development/Web/express-mongodb/views/index.jade",
+		"/Users/KevinY/Development/Web/express-mongodb/views/blog_new.jade",
+		"/Users/KevinY/Development/Web/express-mongodb/views/layout.jade",
+		"/Users/KevinY/Development/Web/express-mongodb/articleprovider-memory.js",
+		"/Users/KevinY/Development/Web/express-mongodb/package.json",
+		"/Users/KevinY/Development/Web/express-mongodb/views/articleprovider-memory.js",
+		"/Users/KevinY/Development/Web/express-mongodb/callbacktest.js",
+		"/Users/KevinY/Development/Web/express-mongodb/app.js",
+		"/Users/KevinY/Development/Web/express-mongodb/README.md",
+		"/Users/KevinY/Development/Web/Git-Test/test2/test.rb",
+		"/Users/KevinY/Development/Web/Git-Test/test2/another.js",
+		"/Users/KevinY/Development/Web/Git-Test/test2/.gitignore",
+		"/Users/KevinY/Development/Web/Git-Test/mygrit/newfile.txt",
+		"/Users/KevinY/Development/Web/Git-Test/mygrit/readme",
+		"/Users/KevinY/Development/Web/Git-Test/test-text.txt",
+		"/Users/KevinY/Development/Web/Git-Test/mygrit/benchmarks.rb"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"lower",
+			"replace",
+			"delete",
+			"$.mobile.toggle(",
+			"$.mobile.selProfList",
+			"}')\")",
+			"cache",
+			"render('login",
+			"plus",
+			"\", ",
+			"      \n",
+			".btn",
+			"fileupload-new",
+			"fileupload",
+			"fileupload-new",
+			">\n",
+			";\n",
+			"var",
+			"parseMultipar",
+			"      ",
+			"\"*\"\n",
+			"\n  "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"toggle(",
+			"curList",
+			".btn-bs"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/KevinY/Desktop/.localized",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 151.0,
+	"status_bar_visible": true
+}
