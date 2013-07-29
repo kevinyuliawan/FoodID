@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var spellcheck = require('../globals').spellcheck;
 
 /*
  * GET home page.

@@ -3,6 +3,7 @@ var nodecr = require('nodecr');
 var resize = require('./resize');
 var fs = require('fs');
 var User = require('../models/user');
+var spellcheck = require('../globals').spellcheck;
 
 
 exports.get = function(req, res){
@@ -129,6 +130,15 @@ exports.post = function(req, res){
         // set text equal to the text split by ':' in order to filter out 'ingredients:'
         text = text.split(':');
         text = text[1].split(/\.|\,|\-/);
+
+        // spellcheck the OCR text before checking them against the user allergies
+        for (var s=0;s<text.length;s++){
+          console.log('Original: ' + text[s]);
+          text[s] = spellcheck(text[s]);
+          console.log('Result: ' + text[s]);
+          console.log('\n----------\n');
+        }
+
         // TEST: console.log('the text: ' + text);
         // TEST: console.log('the check: ' + checkAllergies);
         // TEST: console.log(checkAllergies.contains('peanuts'));

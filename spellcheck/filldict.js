@@ -1,6 +1,6 @@
 // filldict.js - a function to fill up a dictionary from a file
 
-var dict = require( "spell" );
+var spellchecker = require( "spell" );
 
 var file = require( "fs" );
 
@@ -21,34 +21,16 @@ var fill = function( dict, filepath )
 
   dictionary.load( file.readFileSync( filepath, "utf8" ) );
 
+  console.log('Done filling dictionary!');
+
   return dictionary;
 }
 
-//var correct_dictionary = function( dict, suggestions )
-//{
-//  console.log( "  Possible values:" );
-//  for( var i = 0; i < suggestions.length; i++ )
-//  {
-//    console.log( "   " + suggestions[i]["word"] );
-//  }
-//
-//  console.log( "\n   Correct value?" );
-//
-//  process.stdout.write( "   [\"\b" );
-//
-//  process.stdin.resume();
-//  process.stdin.setEncoding( "utf8" );
-//
-//  var dictionary = dict;
-//
-//  process.stdin.on( "data", function( chunk )
-//  {
-//    var wrd = chunk.toString(); wrd = wrd.substring( 0, wrd.length - 1 );
-//    dictionary.add_word( wrd );
-//
-//    return dictionary;
-//  });
-//}
+var save = function( dict, filepath )
+{
+  console.log( "Saving dictionary to [" + filepath + "]..." );
+  file.writeFileSync( filepath, dict.export().toString() );
+}
 
 exports.fill = fill;
-//exports.correct = correct_dictionary;
+exports.save = save;
