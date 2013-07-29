@@ -25,7 +25,7 @@ var express = require('express')
   , profile = require('./routes/profile')
   , database = require('./routes/database')
   , http = require('http')
-  , path = require('path')
+    , path = require('path'); // You need to remember your semicolons, Yankee.
 
 
 
@@ -96,5 +96,5 @@ app.get('/error', routes.error);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
   globals.initializeDict();
-
+  console.log( globals.spellcheck( "cdrn svrup sau$e" ) );
 });

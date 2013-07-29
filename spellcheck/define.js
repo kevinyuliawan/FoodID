@@ -11,11 +11,11 @@ var define = function( dict, srch )
 
   if( srch == undefined )
     return undefined;
-  
+
   /* Divide the word up by spaces in the event that it is a composite of
    * multiple words
    */
-  var subwords = srch.split( ' ' );
+  var subwords = srch.split( /( |\n)/ );
   
   // If it is in fact only one word long, we don't have a problem.
   if( subwords.length == 1 )
@@ -31,7 +31,7 @@ var define = function( dict, srch )
     // All but the last subword are separated by a space, as they were.
     if( i < (subwords.length - 1) )
       returns += ' ';
-  }
+    }
 
   return returns;
 }
