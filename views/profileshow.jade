@@ -31,11 +31,15 @@ block content
           label(for="default") Checked by default?
           input(type="checkbox", name="default", id="default", data-mini="false")
 
-    div.ui-grid-a
-      div.ui-block-a
-        a(href="", data-rel="back", data-role="button", data-icon="back") Back
-      div.ui-block-b
-        input(type="submit", name="submit", value="Update", data-icon="check", data-theme="b")
+    - if (scan == "true")
+      a(href="", data-rel="back", data-role="button", data-icon="back", data-theme="b") Back
+
+    - else
+      div.ui-grid-a
+        div.ui-block-a
+          a(href="", data-rel="back", data-role="button", data-icon="back") Back
+        div.ui-block-b
+          input(type="submit", name="submit", value="Update", data-icon="check", data-theme="b")
 
    
 
