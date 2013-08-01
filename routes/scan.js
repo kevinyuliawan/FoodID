@@ -182,7 +182,7 @@ exports.post = function(req, res){
             console.log(text);
             for(var t=0;t<text.length;t++){
               text[t] = text[t].replace(/[^a-zA-Z0-9\s]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
-              if(text[t] != ''){ // only consider the text if it's nonempty
+              if(text[t] != '' && text[t] != /\s*/){ // only consider the text if it's nonempty
                 text[t] = text[t].trim();
                 var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
                 subwords.push(text[t]); // add the whole subword as well, e.g. 'vitamin', 'd', 'vitamin d'
