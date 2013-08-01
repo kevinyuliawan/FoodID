@@ -195,7 +195,7 @@ exports.post = function(req, res){
             console.log('in eachtext loop')
             console.log(text);
             for(var t=0;t<text.length;t++){
-              if(text[t] != '' && text[t] != /\s*/ && /[a-zA-Z0-9]/g.test(text[t]) ){ // only consider the text if it's nonempty and is made up of alphanumeric characters
+              if(text[t] != '' && text[t] != /\s*/ && /[a-zA-Z0-9]/g.test(text[t]) && text[t].length >= 3 ){ // only consider the text if it's nonempty and is made up of alphanumeric characters
                 text[t] = text[t].replace(/[^a-zA-Z0-9\s\-]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
                 text[t] = text[t].trim();
                 var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
