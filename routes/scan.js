@@ -90,8 +90,8 @@ exports.post = function(req, res){
   // add additional things to scan for depending on allergies e.g. milk -> lactose, wheat -> gluten
   if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy')};
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
-  if (checkAllergies.contains('soy')){ checkAllergies.push('soybean'); checkAllergies.push('soybeans');};
   if (checkAllergies.contains('tylenol')){ checkAllergies.push('vitamin d') };
+  if (checkAllergies.contains('nuts')){ checkAllergies.push('nut')};
   console.log('Final allergies array: ' + checkAllergies);
   // set it to the session so that results can use it
   req.session.allergies = allergies;
@@ -181,6 +181,7 @@ exports.post = function(req, res){
             console.log('in eachtext loop')
             console.log(text);
             for(var t=0;t<text.length;t++){
+              text[t] = text[t].replace(/[^a-zA-Z0-9\s]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
               if(text[t] != ''){ // only consider the text if it's nonempty
                 text[t] = text[t].trim();
                 var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
