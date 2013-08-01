@@ -91,6 +91,7 @@ exports.profileget = function(req, res){
       allergies: allergyString,
       medications: medicationString,
       updatesuccess: req.query.success,
+      scan: req.query.scan,
       cache: 'false'
     });
   });

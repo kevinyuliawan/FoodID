@@ -4,6 +4,11 @@ extends layout
 block content
   h3 Picture Upload
 
+  - if(nofile)
+    p(style="color:red") No file detected.
+  - if(rescan)
+    p(style="color:red") There seems to be an error with your image. Please try rescanning.
+
   div(data-role="fieldcontain")
     input(type="text", id="filetext", placeholder="File name").ui-disabled
     button#btn-choose(data-theme="b") Choose
@@ -19,7 +24,7 @@ block content
             for profile in profiles
               li
                   a(href="#", data-mini="true") #{profile.name}
-                  a(href="/profile/#{profile._id}", data-mini="true")
+                  a(href="/profile/#{profile._id}?scan=true", data-mini="true")
         
 
       

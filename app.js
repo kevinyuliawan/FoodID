@@ -25,13 +25,15 @@ var express = require('express')
   , profile = require('./routes/profile')
   , database = require('./routes/database')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+
+
 
 var app = express();
 
 
-// globals require to make those variables available
-var globals = require('./routes/globals');
+// globals require to make spellchecker variable global
+var globals = require('./globals');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -93,4 +95,6 @@ app.get('/error', routes.error);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+  globals.initializeDict();
+
 });

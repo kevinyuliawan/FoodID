@@ -12,6 +12,7 @@
     "mongodb": "*",
     "mongoose": "*",
     "nodemon": "*",
-    "async": "*"
+    "async": "*",
+    "spell": "*",
   }
 }
