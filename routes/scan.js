@@ -104,7 +104,7 @@ exports.post = function(req, res){
   if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy')};
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
   if (checkAllergies.contains('tylenol')){ checkAllergies.push('vitamin d') };
-  if (checkAllergies.contains('nuts')){ checkAllergies.push('nut')};
+  // if (checkAllergies.contains('nuts')){ checkAllergies.push('nut')}; // it'll say nutrition facts as a match
   if (checkAllergies.contains('buspar')){ checkAllergies.push('grapefruit') };
   console.log('Final allergies array: ' + checkAllergies);
   // set it to the session so that results can use it
