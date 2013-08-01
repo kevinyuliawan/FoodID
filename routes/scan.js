@@ -12,7 +12,9 @@ exports.get = function(req, res){
   res.render('scan', {
     title: 'Scan',
     pageid: 'scanpage',
-    profiles: profileList
+    profiles: profileList,
+    nofile: req.query.nofile,
+    rescan: req.query.rescan
   }); 
 };
 
@@ -82,6 +84,9 @@ exports.post = function(req, res){
   // allergies array created by concatenating the two allergies and additional ones
   checkAllergies = bodyAllergies.concat(addAllergies);
   checkAllergies = eliminateDuplicates(checkAllergies);
+  // add additional things to scan for depending on allergies e.g. milk -> lactose, wheat -> gluten
+  if (checkAllergies.contains('milk')){ checkAllergies.push('lactose'); checkAllergies.push('dairy')};
+  if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
   console.log('Final allergies array: ' + checkAllergies);
   // set it to the session so that results can use it
   req.session.allergies = allergies;
@@ -89,27 +94,31 @@ exports.post = function(req, res){
   
   // get image and its path from the req form
   var image = req.files.scan;
-  var pathToImage = image._writeStream.path;
-  console.log('the original imagepath: ' + pathToImage);
-  /*
-  should resize the image dyamically based on how big it is
-  set it to a baseline width of 3000; sometimes the image
-  can be worse depending on how big it already is and
-  its resolution 
-  */
-  var newSize = '1000';
-  
-  /* pre-imagemagick output */
-  nodecr.process(pathToImage, function(err, text){
-	  text = text.toString().toLowerCase();
-	  fs.appendFile('outputpre.txt',text, function(err){
-		  if(err) {console.log('Theres a pre error: ' + err);res.redirect('/error');}
-		  else console.log('Pre-log built successfully.');
-      }); 
-  });
+  // if the image is smaller than 100 bytes, then no file was uploaded
+  if(image._writeStream.bytesWritten <= 100) { res.redirect('/scan?nofile=true'); }
+  else{
+    var pathToImage = image._writeStream.path;
+    console.log('the original imagepath: ' + pathToImage);
+    /*
+    should resize the image dyamically based on how big it is
+    set it to a baseline width of 3000; sometimes the image
+    can be worse depending on how big it already is and
+    its resolution 
+    */
+    var newSize = 'x640';
+    
+    /* pre-imagemagick output */
+    nodecr.process(pathToImage, function(err, text){
+  	  text = text.toString().toLowerCase();
+  	  fs.appendFile('outputpre.txt',text, function(err){
+  		  if(err) {console.log('Theres a pre error: ' + err);res.redirect('/error');}
+  		  else console.log('Pre-log built successfully.');
+        }); 
+    });
 
-  // resize the image using imagemagick and callback with nodecr
-  resize.resize(pathToImage, newSize, ocr);
+    // resize the image using imagemagick and callback with nodecr
+    resize.resize(pathToImage, newSize, ocr);
+  }; // end if else statement
 
   function ocr(newpath){
     nodecr.process(newpath, function(err, text){
@@ -129,35 +138,44 @@ exports.post = function(req, res){
 	        });
         // set text equal to the text split by ':' in order to filter out 'ingredients:'
         text = text.split(':');
-        text = text[1].split(/\.|\,|\-/);
+        // if there's no text[1], then it couldn't find the colon. ask to scan again.
+        if(!text[1]) { console.log("couldn't find the colon"); res.redirect('/scan?rescan=true')}
+        else {
+          text = text[1].split(/\.|\,|\-/);
 
-        // spellcheck the OCR text before checking them against the user allergies
-        for (var s=0;s<text.length;s++){
-          console.log('Original: ' + text[s]);
-          text[s] = spellcheck(text[s]);
-          console.log('Result: ' + text[s]);
-          console.log('\n----------\n');
-        }
+          // spellcheck the OCR text before checking them against the user allergies
+          /*
+          for (var s=0;s<text.length;s++){
+            console.log('Original: ' + text[s]);
+            text[s] = spellcheck(text[s]);
+            console.log('Result: ' + text[s]);
+            console.log('\n----------\n');
+          }
+          */
 
-        // TEST: console.log('the text: ' + text);
-        // TEST: console.log('the check: ' + checkAllergies);
-        // TEST: console.log(checkAllergies.contains('peanuts'));
-        // insert allergies objects, with name: and match: true if current one is in the checkAllergies array
-        for(var t=0;t<text.length;t++){
-          if(checkAllergies.contains(text[t].toString().trim()) == true){ finalList.push({name:text[t],match:true}); matchCount++}
-          else if(checkAllergies.contains(text[t].toString().trim()) == false) { finalList.push({name:text[t],match:false}); };
-        };
+          // TEST: console.log('the text: ' + text);
+          // TEST: console.log('the check: ' + checkAllergies);
+          // TEST: console.log(checkAllergies.contains('peanuts'));
+          // insert allergies objects, with name: and match: true if current one is in the checkAllergies array
+          for(var t=0;t<text.length;t++){
+            var cur = text[t].split(' ');
+            for(var s=0;s<cur.length;s++){ // check if the substring contains a match
+              if (checkAllergies.contains(cur[s].toString().trim()) == true){ finalList.push({name:text[t],match:true}); matchCount++; break; }
+              else if(s == cur.length-1) { finalList.push({name: text[t], match:false}); };
+            }
+          };
 
-        // set the current session outtext to nodecr's result text, split by comma or period
-        // TODO only skip the first colon for ingredients, but add any other instances of colons
-        req.session.outtext = finalList;
-        req.session.matchcount = matchCount;
-        // delete the temporary image files
-        fs.unlink(newpath);
-	      fs.unlink(pathToImage);
-        // emit a 'done' event on the controller for whichever listeners are listening to it
-          // globals.controller.emit('done', text);
-        res.redirect('/results');
+          // set the current session outtext to nodecr's result text, split by comma or period
+          // TODO only skip the first colon for ingredients, but add any other instances of colons
+          req.session.outtext = finalList;
+          req.session.matchcount = matchCount;
+          // delete the temporary image files
+            fs.unlink(newpath);
+  	        fs.unlink(pathToImage);
+          // emit a 'done' event on the controller for whichever listeners are listening to it
+            // globals.controller.emit('done', text);
+          res.redirect('/results');
+        }; // end if else statement
       };
     });
   }; // end function ocr;

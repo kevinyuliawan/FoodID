@@ -29,9 +29,25 @@ var resize = function (imagepath, newsize, callback ) {
   });
   convert.on("close", function (code) {
     console.log("resize.convert: exit [" + code + ']');
-      // call the OCR callback with the newly generated file
-      callback(newpath);
+    textclean = spawn("textcleaner", ['-g', '-e', 'normalize', '-f', '15', '-o', '10', '-u', '-s', '2', '-T', '-p', '20', newpath, newpath ]);
+
+    textclean.on("close", function(code){
+    console.log("textclean.convert: exit [" + code + "]");
+    // call the OCR callback with the newly generated file
+    callback(newpath);
+    });
+
+    textclean.stderr.on("data", function(data){
+      console.log("resize.texclean: stderr: " + data);
+    });
+
+    textclean.stdout.on("data", function(data){
+      console.log("resize.convert: stdout: " + data);
+    });
+
     });   
+
+  
 }
 
 exports.resize = resize;
