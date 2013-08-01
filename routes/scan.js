@@ -31,10 +31,13 @@ exports.put = function(req, res){
       var list = [];
       for(var p=0; p<profileArray.length;p++){
         var currentProfile = profileArray[p];
-        for(var n=0;n<currentProfile.allergies.length;n++){
+        for(var n=0;n<currentProfile.allergies.length;n++){ // add allergies
           if(n==0 && p==0) {listString += currentProfile.allergies[n].name;}
           else {listString += "," + currentProfile.allergies[n].name;};
           console.log('current string: ' + listString);
+        }
+        for(var o=0;o<currentProfile.medications.length;o++){ // add medications
+          listString += "," + currentProfile.medications[o].name.toString().toLowerCase();
         }
       };
       console.log('list: ' + listString);
@@ -85,8 +88,10 @@ exports.post = function(req, res){
   checkAllergies = bodyAllergies.concat(addAllergies);
   checkAllergies = eliminateDuplicates(checkAllergies);
   // add additional things to scan for depending on allergies e.g. milk -> lactose, wheat -> gluten
-  if (checkAllergies.contains('milk')){ checkAllergies.push('lactose'); checkAllergies.push('dairy')};
+  if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy')};
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
+  if (checkAllergies.contains('soy')){ checkAllergies.push('soybean'); checkAllergies.push('soybeans');};
+  if (checkAllergies.contains('tylenol')){ checkAllergies.push('vitamin d') };
   console.log('Final allergies array: ' + checkAllergies);
   // set it to the session so that results can use it
   req.session.allergies = allergies;
@@ -124,24 +129,36 @@ exports.post = function(req, res){
     nodecr.process(newpath, function(err, text){
       if (err){console.log('The error: ' + err);res.redirect('/error');}
       else {
-        // array of allergies objects with name: and match: , and an int count to pass to the page with the number of matches
+        // - array of allergies objects with name: and match: , and an int count to pass to the page with the number of matches
         var finalList = [];
         var matchCount = 0;
         console.log('the final arraylist: '); console.log(checkAllergies);
-        // make the text a string and lowercase for CSS formatting later
+        // - make the text a string and lowercase for CSS formatting later
+        // console.log('text before: ' + text);
 	      text = text.toString().toLowerCase();
-        console.log('the new imagepath: ' + newpath);
-        // write the output text to a log file
+        text = text.replace(/(\r\n|\n|\r)/gm,' ') //remove new lines and replace with spaces
+        text = text.replace(/[\])}[{(]/g,''); //remove parens and square brackets
+        // console.log('text after: ' + text);
+        // console.log('the new imagepath: ' + newpath);
+        // - write the output text to a log file
 	      fs.appendFile('outputpost.txt',text, function(err){
 		      if(err) {console.log('outputpost appendFile error: ' + err);res.redirect('/error');}
 		      else console.log('Post-log built successfully.');
 	        });
         // set text equal to the text split by ':' in order to filter out 'ingredients:'
-        text = text.split(':');
+        text = text.split('ents:');
         // if there's no text[1], then it couldn't find the colon. ask to scan again.
         if(!text[1]) { console.log("couldn't find the colon"); res.redirect('/scan?rescan=true')}
+        
         else {
-          text = text[1].split(/\.|\,|\-/);
+          /*
+          var looptext = '';
+          for (var z=0;z<text.length;z++){
+            looptext += text[z];
+          }
+          text = looptext;
+          */ // no need to loop through now since we split by 'ents'
+          text = text[1].split(/\.|\,|\:|\sand\s/); // split by period, comma, colon, 'and'
 
           // spellcheck the OCR text before checking them against the user allergies
           /*
@@ -156,17 +173,42 @@ exports.post = function(req, res){
           // TEST: console.log('the text: ' + text);
           // TEST: console.log('the check: ' + checkAllergies);
           // TEST: console.log(checkAllergies.contains('peanuts'));
+
+
+
           // insert allergies objects, with name: and match: true if current one is in the checkAllergies array
-          for(var t=0;t<text.length;t++){
-            var cur = text[t].split(' ');
-            for(var s=0;s<cur.length;s++){ // check if the substring contains a match
-              if (checkAllergies.contains(cur[s].toString().trim()) == true){ finalList.push({name:text[t],match:true}); matchCount++; break; }
-              else if(s == cur.length-1) { finalList.push({name: text[t], match:false}); };
-            }
-          };
+          eachtext: //each object in text
+            console.log('in eachtext loop')
+            console.log(text);
+            for(var t=0;t<text.length;t++){
+              if(text[t] != ''){ // only consider the text if it's nonempty
+                text[t] = text[t].trim();
+                var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
+                subwords.push(text[t]); // add the whole subword as well, e.g. 'vitamin', 'd', 'vitamin d'
+
+            eachsubword:
+                for(var s=0;s<subwords.length;s++){ //for each of 'partially', 'hydrogenated', etc.
+
+            eachallergy: //check if the any of the allergies are in the current subword e.g. allergy: 'soy', subword: 'soybean'
+                  for(var q=0;q<checkAllergies.length;q++){
+                    if( subwords[s].indexOf(checkAllergies[q]) >= 0 ){ // break out of current and subword loop, go to next text[t]
+                      finalList.push({name:text[t],match:true}); 
+                      matchCount++; 
+                      console.log('found: ' + checkAllergies[q] + ' in: ' + subwords[s]); 
+                      break eachsubword; } 
+                  }// end eachallergy
+
+                if (s==subwords.length-1) { finalList.push({name: text[t], match:false}); /* console.log('no match #' + s) */ }; // if at end of loop and we haven't broken yet, then no match
+
+                }// end eachsubword
+
+              }
+            }// end eachtext;
+
+
 
           // set the current session outtext to nodecr's result text, split by comma or period
-          // TODO only skip the first colon for ingredients, but add any other instances of colons
+          // TODO -done- only skip the first colon for ingredients, but add any other instances of colons
           req.session.outtext = finalList;
           req.session.matchcount = matchCount;
           // delete the temporary image files
