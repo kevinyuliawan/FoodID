@@ -105,6 +105,7 @@ exports.post = function(req, res){
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
   if (checkAllergies.contains('tylenol')){ checkAllergies.push('vitamin d') };
   if (checkAllergies.contains('nuts')){ checkAllergies.push('nut')};
+  if (checkAllergies.contains('buspar')){ checkAllergies.push('grapefruit') };
   console.log('Final allergies array: ' + checkAllergies);
   // set it to the session so that results can use it
   req.session.allergies = allergies;
@@ -194,8 +195,8 @@ exports.post = function(req, res){
             console.log('in eachtext loop')
             console.log(text);
             for(var t=0;t<text.length;t++){
-              // text[t] = text[t].replace(/[^a-zA-Z0-9\s]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
-              if(text[t] != '' && text[t] != /\s*/ && text[t] != /[^a-zA-Z0-9\s\-]/g ){ // only consider the text if it's nonempty and is made up of alphanumeric characters
+              if(text[t] != '' && text[t] != /\s*/ && /[a-zA-Z0-9]/g.test(text[t]) ){ // only consider the text if it's nonempty and is made up of alphanumeric characters
+                text[t] = text[t].replace(/[^a-zA-Z0-9\s\-]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
                 text[t] = text[t].trim();
                 var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
                 subwords.push(text[t]); // add the whole subword as well, e.g. 'vitamin', 'd', 'vitamin d'
