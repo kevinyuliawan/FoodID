@@ -78,6 +78,17 @@ Array.prototype.contains = function(val){
   else{return false;};
 };
 
+// used to remove a matching element in an array
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {         
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+
 exports.post = function(req, res){
   var allergies = [];
   // get the allergies, and split them by ', ' (comma space) to arrays
@@ -87,6 +98,8 @@ exports.post = function(req, res){
   // allergies array created by concatenating the two allergies and additional ones
   checkAllergies = bodyAllergies.concat(addAllergies);
   checkAllergies = eliminateDuplicates(checkAllergies);
+  checkAllergies = checkAllergies.clean('');
+  checkAllergies = checkAllergies.clean('undefined');
   // add additional things to scan for depending on allergies e.g. milk -> lactose, wheat -> gluten
   if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy')};
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
@@ -181,8 +194,8 @@ exports.post = function(req, res){
             console.log('in eachtext loop')
             console.log(text);
             for(var t=0;t<text.length;t++){
-              text[t] = text[t].replace(/[^a-zA-Z0-9\s]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
-              if(text[t] != '' && text[t] != /\s*/){ // only consider the text if it's nonempty
+              // text[t] = text[t].replace(/[^a-zA-Z0-9\s]/g, ''); // cleans the text up; removes anything that's not a letter or number or space or hyphen(?) \- for hyphen escaped
+              if(text[t] != '' && text[t] != /\s*/ && text[t] != /[^a-zA-Z0-9\s\-]/g ){ // only consider the text if it's nonempty and is made up of alphanumeric characters
                 text[t] = text[t].trim();
                 var subwords = text[t].split(' '); //'partially hydrogenated corn syrup' -> ['partially', 'hydrogenated', 'corn', 'syrup']
                 subwords.push(text[t]); // add the whole subword as well, e.g. 'vitamin', 'd', 'vitamin d'
