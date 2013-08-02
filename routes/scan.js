@@ -101,7 +101,7 @@ exports.post = function(req, res){
   checkAllergies = checkAllergies.clean('');
   checkAllergies = checkAllergies.clean('undefined');
   // add additional things to scan for depending on allergies e.g. milk -> lactose, wheat -> gluten
-  if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy')};
+  if (checkAllergies.contains('lactose')){ checkAllergies.push('milk'); checkAllergies.push('dairy'); };
   if (checkAllergies.contains('gluten')){ checkAllergies.push('wheat'); checkAllergies.push('oats'); checkAllergies.push('oat')};
   if (checkAllergies.contains('tylenol')){ checkAllergies.push('vitamin d') };
   // if (checkAllergies.contains('nuts')){ checkAllergies.push('nut')}; // it'll say nutrition facts as a match

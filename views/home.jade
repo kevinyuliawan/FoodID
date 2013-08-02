@@ -28,7 +28,7 @@ block content
   
   - if (profilelist.length == 0)
     p You don't have any profiles yet.
-    a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-theme="b") Create one!
+    a(href="/profile/create", data-role="button", data-icon="plus", data-iconpos="top", data-theme="g") Create one!
 
 
   // - set variables for the form action depending on if editmode is true, otherwise for the scan button, the form is handled by jQuery
@@ -50,13 +50,13 @@ block content
               a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');", data-mini="true")
                 input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
                 label(for="checkbox-#{i}", data-mini="true", class="labelcheckbox") #{profile.name}
-              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');")
+              a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');", data-theme="g")
       else
-        ul(data-role="listview", data-inset="true", data-split-icon="info", data-theme="c")
+        ul(data-role="listview", data-inset="true", data-split-icon="arrow-r", data-theme="c")
           each profile, i in profilelist
             li
               a(href="#", onclick="$.mobile.toggle('#checkbox-#{i}','#{profile._id}');", data-mini="true")
                 input(type="checkbox", name="checkbox-#{i}", id="checkbox-#{i}", data-mini="true")
                 label(for="checkbox-#{i}", data-mini="true", class="labelcheckbox") #{profile.name}
-              a(href="/profile/#{profile._id}", data-mini="true")
+              a(href="/profile/#{profile._id}", data-mini="true", data-theme="g")
 
