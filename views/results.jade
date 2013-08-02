@@ -13,7 +13,7 @@ block content
       li
         a(href="")
           - if (ingr.match == true)
-            p(style="text-transform:capitalize;color:red;font-weight:bold")= ingr.name
+            p(style="text-transform:capitalize;color:red;font-weight:bold;text-decoration:none")= ingr.name
           - else
-            p(style="text-transform:capitalize;font-weight:bold")= ingr.name
+            p(style="text-transform:capitalize;font-weight:bold;text-decoration:none")= ingr.name
         a(href="http://google.com/search?q=#{ingr.name}", target="_blank", data-theme="g")
